@@ -1,35 +1,15 @@
-package com.example.sistemaparaveterinaria
+package com.example.veterinariaasher
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.Pets
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
+
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -38,7 +18,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.sistemaparaveterinaria.ui.theme.SistemaParaVeterinariaTheme
+import com.example.veterinariaasher.ui.theme.VeterinariaAsherTheme
 
 // 1. CLASE DE DATOS - Lo que te pide el profe para no repetir código
 data class ServicioVet(
@@ -53,7 +33,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            SistemaParaVeterinariaTheme {
+            VeterinariaAsherTheme {
                 AppVeterinaria()
             }
         }
@@ -67,7 +47,7 @@ fun AppVeterinaria() {
     val listaServicios = listOf(
         ServicioVet("Consulta General", "Revisión completa y diagnóstico", "🩺", Color(0xFF81C784)),
         ServicioVet("Vacunación", "Carnet de vacunas al día", "💉", Color(0xFF64B5F6)),
-        ServicioVet("Peluquería Canina", "Baño, corte y estilo", "✂️", Color(0xFFFFB74D)),
+        ServicioVet("Peluquería Canina", "Baño, corte y estilo", "✂", Color(0xFFFFB74D)),
         ServicioVet("Cirugía", "Procedimientos seguros", "🏥", Color(0xFFE57373)),
         ServicioVet("Hospitalización", "Cuidado 24/7", "🐾", Color(0xFFBA68C8)),
         ServicioVet("Laboratorio", "Exámenes rápidos", "🔬", Color(0xFF4DB6AC))
@@ -78,7 +58,7 @@ fun AppVeterinaria() {
             TopAppBar(
                 title = {
                     Row(verticalAlignment = Alignment.CenterVertically) {
-                        Icon(Icons.Default.Pets, contentDescription = null)
+                        Text("🐾", fontSize = 20.sp) // <-- ANTES ERA Icon(Icons.Filled.Pets)
                         Spacer(Modifier.width(8.dp))
                         Text("VetCare - Pereira", fontWeight = FontWeight.Bold)
                     }
@@ -112,9 +92,14 @@ fun AppVeterinaria() {
                             onClick = {},
                             colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF2E7D32))
                         ) {
-                            Icon(Icons.Default.Favorite, contentDescription = null)
-                            Spacer(Modifier.width(8.dp))
-                            Text("Agendar Cita")
+                            Button(
+                                onClick = {},
+                                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF2E7D32))
+                            ) {
+                                Text("❤️", fontSize = 16.sp)
+                                Spacer(Modifier.width(8.dp))
+                                Text("Agendar Cita")
+                            }
                         }
                     }
                 }
@@ -167,7 +152,7 @@ fun CardServicio(servicio: ServicioVet) {
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun PreviewVet() {
-    SistemaParaVeterinariaTheme {
+    VeterinariaAsherTheme {
         AppVeterinaria()
     }
 }
